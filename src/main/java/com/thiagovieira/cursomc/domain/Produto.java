@@ -29,7 +29,7 @@ public class Produto implements Serializable {
 	private String nome;
 	private Double price;
 	
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA", // Tabela do banco de dados que fará o meio de campo, entre as duas tabelas
 			joinColumns = @JoinColumn(name = "produto_id"), // Chave Estrangeira do Produto
