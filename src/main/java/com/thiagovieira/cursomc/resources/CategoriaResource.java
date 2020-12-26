@@ -24,9 +24,9 @@ public class CategoriaResource {
 	private CategoriaService service;
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> findbyid(@PathVariable Integer id) throws ObjectNotFoundException {
+	public ResponseEntity<Categoria> findbyid(@PathVariable Integer id) throws ObjectNotFoundException {
 		
-		Categoria obj = service.buscar(id);
+		Categoria obj = service.find(id);
 		return ResponseEntity.ok().body(obj);	
 	}
 	
@@ -35,6 +35,13 @@ public class CategoriaResource {
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();// Acrescenta o ID da nova categoria na requisição HTTPS URL
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id ){
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 	
 }
