@@ -2,6 +2,7 @@ package com.thiagovieira.cursomc.resources.exceptions;
 
 import java.io.Serializable;
 
+// Classe Personalizada para Lançamento de Exception criada no Resources
 public class StandardError implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
